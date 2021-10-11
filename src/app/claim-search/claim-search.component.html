@@ -1,0 +1,41 @@
+<button kendoButton (click)="open()" [primary]="true">Claim Search</button>
+<kendo-dialog
+  title="Claim search"
+  *ngIf="opened"
+  (close)="close()"
+  [minWidth]="250"
+  [width]="850"
+>
+  <p>
+    <kendo-textbox
+      style="width: 88%"
+      required
+      name="username"
+      showErrorIcon="initial"
+      #claimSearchInput
+    ></kendo-textbox>
+    <button
+      kendoButton
+      look="outline"
+      class="send-button"
+      style="width: 10%; margin-left: 10px"
+      (click)="onSearch()"
+      look="outline"
+    >
+      Search
+    </button>
+  </p>
+
+  <kendo-grid [data]="claimedData">
+    <kendo-grid-column field="Discontinued" title="">
+      <ng-template kendoGridCellTemplate let-dataItem>
+        <button kendoButton (click)="selectClaim()" look="flat">Select</button>
+      </ng-template>
+    </kendo-grid-column>
+    <kendo-grid-column field="claimNumber" title="Claim Number">
+    </kendo-grid-column>
+    <kendo-grid-column field="claimant" title="Claimant"> </kendo-grid-column>
+    <kendo-grid-column field="customer" title="Customer"> </kendo-grid-column>
+    <kendo-grid-column field="doi" title="DOI"> </kendo-grid-column>
+  </kendo-grid>
+</kendo-dialog>

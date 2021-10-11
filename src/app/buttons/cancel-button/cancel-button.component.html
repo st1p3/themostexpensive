@@ -1,4 +1,4 @@
-<button kendoButton (click)="open()" [primary]="true">Cancel</button>
+<button kendoButton (click)="open()">Cancel</button>
 <kendo-dialog
   title="Please confirm"
   *ngIf="opened"
@@ -6,11 +6,20 @@
   [minWidth]="250"
   [width]="450"
 >
-  <p style="margin: 30px; text-align: center">
-    Are you sure you want to continue?
+  <p style="text-align: center">
+    You are about to cancel this visit. Do you want to proceed?
   </p>
-  <kendo-dialog-actions>
-    <button kendoButton (click)="close()">No</button>
-    <button kendoButton (click)="proceed()">Yes</button>
+  <kendo-dialog-actions style="padding: 0px">
+    <kendo-buttongroup width="100%">
+      <button kendoButton (click)="proceed()" style="height: 50px">Yes</button>
+      <button
+        kendoButton
+        (click)="close()"
+        [primary]="true"
+        style="height: 50px"
+      >
+        No
+      </button>
+    </kendo-buttongroup>
   </kendo-dialog-actions>
 </kendo-dialog>

@@ -2,3 +2,12 @@
   (dialogProceed)="handleDialogProceed($event)"
 ></app-cancel-button>
 <h1>{{ dialogAction }}</h1>
+<hr />
+<h1>CLAIM SEARCH</h1>
+<app-claim-search (sendClaimedData)="onDisplayClaimedData($event)">
+</app-claim-search>
+<hr />
+<div *ngIf="claimSearchData">
+  {{ claimNumber }}
+</div>
+<hr />
