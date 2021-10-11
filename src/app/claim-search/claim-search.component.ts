@@ -33,6 +33,7 @@ export class ClaimSearchComponent implements OnInit {
 
   selectClaim() {
     this.sendClaimedData.emit(this.claimedData);
+    this.close();
   }
 
   public close() {
