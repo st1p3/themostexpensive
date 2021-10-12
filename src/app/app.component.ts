@@ -46,6 +46,7 @@ export class AppComponent {
   }
 
   proceed() {
+    this.comparedData = [];
     this.claimantName = this.assignClaimNameRef.value;
     let claimantDOBobject = this.assignClaimDOBRef.value;
 
@@ -58,8 +59,10 @@ export class AppComponent {
         (element.claimant === this.claimantName ||
           element.dob === this.claimantDOB)
       ) {
-        this.comparedData.push(element);
+        element['claimCompare'] = 'Prior Visit';
+
         this.comparedData.push({
+          claimCompare: 'This Visit',
           claimID: 1,
           claimNumber: this.claimNumber,
           claimant: this.claimantName,
@@ -67,6 +70,8 @@ export class AppComponent {
           dob: this.claimantDOB,
           visitDate: 'nebitno 06/02/2021',
         });
+        this.comparedData.push(element);
+
         return true;
       } else {
         return false;

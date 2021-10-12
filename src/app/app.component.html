@@ -27,7 +27,7 @@
     *ngIf="opened"
     (close)="close()"
     [minWidth]="250"
-    [width]="450"
+    [width]="850"
   >
     <p style="text-align: center">
       The Source IDs for these two visits do not match. Please confirm you want
@@ -35,6 +35,7 @@
     </p>
     <p style="text-align: center">
       <kendo-grid [data]="comparedData">
+        <kendo-grid-column field="claimCompare" title=""></kendo-grid-column>
         <kendo-grid-column field="claimant" title="Names"></kendo-grid-column>
         <kendo-grid-column field="dob" title="DOB"></kendo-grid-column>
         <kendo-grid-column field="email" title="Email"></kendo-grid-column>
