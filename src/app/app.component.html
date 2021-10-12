@@ -6,8 +6,50 @@
 <h1>CLAIM SEARCH</h1>
 <app-claim-search (sendClaimedData)="onDisplayClaimedData($event)">
 </app-claim-search>
-<hr />
-<div *ngIf="claimSearchData">
-  {{ claimNumber }}
+<div style="margin-top: 1rem">
+  <kendo-label text="Claim: ">
+    <kendo-textbox [value]="claimNumber"></kendo-textbox>
+  </kendo-label>
 </div>
+<div style="margin-top: 1rem">
+  <kendo-label text="Name: ">
+    <kendo-textbox #assignClaimName></kendo-textbox>
+  </kendo-label>
+</div>
+<div style="margin-top: 1rem">
+  <kendo-label text="DOB: "> </kendo-label>
+  <kendo-datepicker #assignClaimDOB [format]="format"></kendo-datepicker>
+</div>
+<div style="margin-top: 1rem">
+  <button kendoButton (click)="proceed()">Assign Claim</button>
+  <kendo-dialog
+    title="Claim Association Error"
+    *ngIf="opened"
+    (close)="close()"
+    [minWidth]="250"
+    [width]="450"
+  >
+    <p style="text-align: center">
+      The Source IDs for these two visits do not match. Please confirm you want
+      to proceed with linking these visits together.
+    </p>
+    <p style="text-align: center">
+      <kendo-grid [data]="comparedData">
+        <kendo-grid-column field="claimant" title="Names"></kendo-grid-column>
+        <kendo-grid-column field="dob" title="DOB"></kendo-grid-column>
+        <kendo-grid-column field="email" title="Email"></kendo-grid-column>
+        <kendo-grid-column
+          field="visitDate"
+          title="Visit Date"
+        ></kendo-grid-column>
+      </kendo-grid>
+    </p>
+    <kendo-dialog-actions>
+      <button kendoButton (click)="close()">Yes</button>
+      <button kendoButton (click)="close()" [primary]="true">No</button>
+    </kendo-dialog-actions>
+  </kendo-dialog>
+</div>
+<hr />
+{{ claimAssociation }}
 <hr />

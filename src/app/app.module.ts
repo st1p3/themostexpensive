@@ -12,6 +12,8 @@ import { InputsModule } from '@progress/kendo-angular-inputs';
 import { LabelModule } from '@progress/kendo-angular-label';
 import { LayoutModule } from '@progress/kendo-angular-layout';
 import { GridModule } from '@progress/kendo-angular-grid';
+import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
+
 
 @NgModule({
   declarations: [AppComponent, CancelButtonComponent, ClaimSearchComponent],
@@ -25,6 +27,7 @@ import { GridModule } from '@progress/kendo-angular-grid';
     LayoutModule,
     FormsModule,
     GridModule,
+    DateInputsModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
