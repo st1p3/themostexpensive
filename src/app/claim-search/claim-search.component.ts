@@ -26,13 +26,15 @@ export class ClaimSearchComponent implements OnInit {
     this.claimedNumber = this.searchClaimRef.value;
     this.allClaims.forEach((element) => {
       if (element.claimNumber === this.claimedNumber) {
-        this.claimedData = [element];
+        element['fullName'] =
+          element.claimantName + ', ' + element.claimantLastName;
+        this.claimedData.push(element);
       }
     });
   }
 
-  selectClaim() {
-    this.sendClaimedData.emit(this.claimedData);
+  selectClaim(dataItem: any) {
+    this.sendClaimedData.emit(this.claimedData[dataItem]);
     this.close();
   }
 

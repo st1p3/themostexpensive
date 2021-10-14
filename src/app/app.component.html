@@ -2,7 +2,9 @@
   (dialogProceed)="handleDialogProceed($event)"
 ></app-cancel-button>
 <h1>{{ dialogAction }}</h1>
+
 <hr />
+
 <h1>CLAIM SEARCH</h1>
 <app-claim-search (sendClaimedData)="onDisplayClaimedData($event)">
 </app-claim-search>
@@ -11,32 +13,23 @@
     <kendo-textbox [value]="claimNumber"></kendo-textbox>
   </kendo-label>
 </div>
+
 <div style="margin-top: 1rem">
-  <kendo-label text="Name: ">
-    <kendo-textbox #assignClaimName></kendo-textbox>
-  </kendo-label>
-</div>
-<div style="margin-top: 1rem">
-  <kendo-label text="DOB: "> </kendo-label>
-  <kendo-datepicker #assignClaimDOB [format]="format"></kendo-datepicker>
-</div>
-<div style="margin-top: 1rem">
-  <button kendoButton (click)="proceed()">Assign Claim</button>
   <kendo-dialog
     title="Claim Association Error"
     *ngIf="opened"
     (close)="close()"
     [minWidth]="250"
-    [width]="850"
+    [width]="650"
   >
     <p style="text-align: center">
       The Source IDs for these two visits do not match. Please confirm you want
       to proceed with linking these visits together.
     </p>
     <p style="text-align: center">
-      <kendo-grid [data]="comparedData">
+      <kendo-grid [data]="comparedData" scrollable="none">
         <kendo-grid-column field="claimCompare" title=""></kendo-grid-column>
-        <kendo-grid-column field="claimant" title="Names"></kendo-grid-column>
+        <kendo-grid-column field="fullName" title="Names"></kendo-grid-column>
         <kendo-grid-column field="dob" title="DOB"></kendo-grid-column>
         <kendo-grid-column field="email" title="Email"></kendo-grid-column>
         <kendo-grid-column
@@ -45,12 +38,60 @@
         ></kendo-grid-column>
       </kendo-grid>
     </p>
-    <kendo-dialog-actions>
-      <button kendoButton (click)="close()">Yes</button>
-      <button kendoButton (click)="close()" [primary]="true">No</button>
+    <kendo-dialog-actions layout="normal" style="justify-content: end">
+      <button kendoButton (click)="onProceed()" [primary]="true">
+        Proceed
+      </button>
+      <button kendoButton (click)="close()" look="outline">Cancel</button>
     </kendo-dialog-actions>
   </kendo-dialog>
 </div>
 <hr />
 {{ claimAssociation }}
 <hr />
+<form [formGroup]="claimForm">
+  <kendo-formfield>
+    <kendo-label [for]="claimNumberFB" text="Claim Number"></kendo-label>
+    <kendo-textbox
+      formControlName="claimNumberFB"
+      [clearButton]="true"
+      #claimNumberFB
+    ></kendo-textbox>
+    <kendo-formerror
+      >Error: Claim Number is required & 18 characters long</kendo-formerror
+    >
+  </kendo-formfield>
+
+  <kendo-formfield>
+    <kendo-label [for]="firstNameFB" text="First Name"></kendo-label>
+    <kendo-textbox
+      formControlName="firstNameFB"
+      [clearButton]="true"
+      #firstNameFB
+    ></kendo-textbox>
+    <kendo-formerror>Error: First Name is required</kendo-formerror>
+  </kendo-formfield>
+
+  <kendo-formfield>
+    <kendo-label [for]="lastNameFB" text="Last Name"></kendo-label>
+    <kendo-textbox
+      formControlName="lastNameFB"
+      [clearButton]="true"
+      #lastNameFB
+    ></kendo-textbox>
+    <kendo-formerror>Error: Last Name is required</kendo-formerror>
+  </kendo-formfield>
+
+  <kendo-formfield>
+    <kendo-label [for]="dobFB" text="Date of Birth"></kendo-label>
+    <kendo-datepicker #dobFB formControlName="dobFB"></kendo-datepicker>
+    <kendo-formerror>Error: Date of Birth is required</kendo-formerror>
+  </kendo-formfield>
+
+  <div class="k-form-buttons">
+    <button class="k-button k-primary" (click)="submitForm()">
+      Send Reservation Request
+    </button>
+    <button class="k-button" (click)="clearForm()">Clear</button>
+  </div>
+</form>

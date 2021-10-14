@@ -7,6 +7,7 @@
   [width]="850"
 >
   <p>
+    <!-- VALUE ADDED JUST FOR DEVELOPMENT PURPOSES-->
     <kendo-textbox
       style="width: 88%"
       required
@@ -25,16 +26,26 @@
       Search
     </button>
   </p>
-
-  <kendo-grid [data]="claimedData">
-    <kendo-grid-column field="Discontinued" title="">
-      <ng-template kendoGridCellTemplate let-dataItem>
-        <button kendoButton (click)="selectClaim()" look="flat">Select</button>
+  <kendo-grid [data]="claimedData" scrollable="none">
+    <kendo-grid-column
+      field="Discontinued"
+      title=""
+      [style]="{ 'text-align': 'center' }"
+    >
+      <ng-template kendoGridCellTemplate let-dataItem let-rowIndex="rowIndex">
+        <button
+          kendoButton
+          (click)="selectClaim(rowIndex)"
+          style="color: blue"
+          look="clear"
+        >
+          Select
+        </button>
       </ng-template>
     </kendo-grid-column>
     <kendo-grid-column field="claimNumber" title="Claim Number">
     </kendo-grid-column>
-    <kendo-grid-column field="claimant" title="Claimant"> </kendo-grid-column>
+    <kendo-grid-column field="fullName" title="Claimant"> </kendo-grid-column>
     <kendo-grid-column field="customer" title="Customer"> </kendo-grid-column>
     <kendo-grid-column field="doi" title="DOI"> </kendo-grid-column>
   </kendo-grid>

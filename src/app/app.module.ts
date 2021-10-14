@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormGroup, FormControl, FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { ButtonsModule } from '@progress/kendo-angular-buttons';
@@ -14,13 +14,13 @@ import { LayoutModule } from '@progress/kendo-angular-layout';
 import { GridModule } from '@progress/kendo-angular-grid';
 import { DateInputsModule } from '@progress/kendo-angular-dateinputs';
 
-
 @NgModule({
   declarations: [AppComponent, CancelButtonComponent, ClaimSearchComponent],
   imports: [
     BrowserModule,
     ButtonsModule,
     BrowserAnimationsModule,
+    ReactiveFormsModule,
     DialogsModule,
     InputsModule,
     LabelModule,
